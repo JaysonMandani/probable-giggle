@@ -1,0 +1,21 @@
+<%= form_for(@company) do |company| %>
+  <p>
+    <%= company.label :name, "Company Name" %>
+    <%= company.text_field :name %>
+  </p>
+
+  <%= company.fields_for :connections do |connection| %>
+    <%= connection.fields_for :contact do |contact| %>
+      <p>
+        <%= contact.label :contact_number %>
+        <%= contact.text_field :contact_number %>
+      </p>
+    <% end %>
+  <% end %>
+
+  <p>
+    <%= company.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', companies_path %>
